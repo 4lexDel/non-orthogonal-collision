@@ -9,7 +9,7 @@ class Orb {
             y: vy
         };
         this.r = r;
-        this.damping = 0.6;
+        this.damping = 0.8;
     }
 
     move(gravity) {

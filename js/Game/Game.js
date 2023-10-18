@@ -21,7 +21,7 @@ class Game extends GameBase { //A renommer ?
 
         this.gravity = {
             x: 0,
-            y: 0 //0.095
+            y: 0.25
         };
 
         this.segments = 70;
@@ -53,7 +53,7 @@ class Game extends GameBase { //A renommer ?
 
     initOrb(nb = 50) {
         for (let i = 0; i < nb; i++) {
-            this.orbs.push(new Orb((50 + Math.random() * this.canvas.width - 100), Math.random() * 80, 5, Math.random() * 5, Math.random() * 5));
+            this.orbs.push(new Orb((50 + Math.random() * this.canvas.width - 100), Math.random() * 80, 8, Math.random() * 5, Math.random() * 5));
         }
     }
 

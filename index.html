@@ -4,108 +4,19 @@
 <head>
     <meta charset="UTF-8" />
     <title>Non-orthogonal Collision with Multiple Ground Segments</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <canvas id="myCanvas" width="1000" height="500"></canvas>
-    <script src="js/Ground.js"></script>
+    <div class="game-content">
+        <canvas id="myCanvas"></canvas>
+    </div>
+
+    <script src="js/Segment.js"></script>
     <script src="js/Orb.js"></script>
-    <script>
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-
-        // let orb;
-        const gravity = {
-            x: 0,
-            y: 0.095
-        };
-        const segments = 70;
-        const ground = [];
-
-        let orbs = [];
-
-        function drawGround() {
-            ctx.fillStyle = '#7f7f7f';
-            ctx.beginPath();
-            ctx.moveTo(ground[0].x1, ground[0].y1);
-            for (const groundSegment of ground) {
-                ctx.lineTo(groundSegment.x2, groundSegment.y2);
-            }
-            ctx.lineTo(ground[segments - 1].x2, canvas.height);
-            ctx.lineTo(ground[0].x1, canvas.height);
-
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-        }
-
-        function initOrb(nb = 50) {
-            /*orbs.push(new Orb(50, 50, 5, 0.5, 0));
-            orbs.push(new Orb(50, 50, 5, 0.5, 0.5));
-            orbs.push(new Orb(50, 50, 5, -0.5, -0.5));
-            orbs.push(new Orb(50, 50, 5, -0.5, 0.5));
-
-            orbs.push(new Orb(250, 50, 5, 0.5, 0));
-            orbs.push(new Orb(250, 50, 5, 0.5, 0.5));
-            orbs.push(new Orb(250, 50, 5, -0.5, -0.5));
-            orbs.push(new Orb(250, 50, 5, -0.5, 0.5));
-
-            orbs.push(new Orb(450, 50, 5, 0.5, 0));
-            orbs.push(new Orb(450, 50, 5, 0.5, 0.5));
-            orbs.push(new Orb(450, 50, 5, -0.5, -0.5));
-            orbs.push(new Orb(450, 50, 5, -0.5, 0.5));
-
-            orbs.push(new Orb(650, 50, 5, 0.5, 0));
-            orbs.push(new Orb(650, 50, 5, 0.5, 0.5));
-            orbs.push(new Orb(650, 50, 5, -0.5, -0.5));
-            orbs.push(new Orb(650, 50, 5, -0.5, 0.5));
-
-            orbs.push(new Orb(850, 50, 5, 0.5, 0));
-            orbs.push(new Orb(850, 50, 5, 0.5, 0.5));
-            orbs.push(new Orb(850, 50, 5, -0.5, -0.5));
-            orbs.push(new Orb(850, 50, 5, -0.5, 0.5));*/
-            for (let i = 0; i < nb; i++) {
-                orbs.push(new Orb((50 + Math.random() * canvas.width - 100), Math.random() * 80, 5, Math.random() * 10, Math.random() * 10));
-            }
-        }
-
-        function setup() {
-            // orb = new Orb(50, 50, 3);
-            initOrb(50);
-
-            const peakHeights = [];
-            for (let i = 0; i <= segments; i++) {
-                peakHeights.push(Math.random() * 10 + canvas.height - 60);
-            }
-
-            const segs = segments;
-            for (let i = 0; i < segments; i++) {
-                ground[i] = new Ground((canvas.width / segs) * i, peakHeights[i], (canvas.width / segs) * (i + 1), peakHeights[i + 1]);
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            drawGround();
-
-            for (const orb of orbs) {
-                orb.move();
-                orb.display();
-                orb.checkWallCollision();
-
-                for (let i = 0; i < segments; i++) {
-                    orb.checkGroundCollision(ground[i]);
-                }
-            }
-
-            requestAnimationFrame(draw);
-        }
-
-        setup();
-        draw()
-            // setInterval(draw, 16);
-    </script>
+    <script src="js/Game/GameBase.js"></script>
+    <script src="js/Game/Game.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

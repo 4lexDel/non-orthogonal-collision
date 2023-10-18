@@ -12,14 +12,14 @@ class Orb {
         this.damping = 0.6;
     }
 
-    move() {
+    move(gravity) {
         this.velocity.x += gravity.x;
         this.velocity.y += gravity.y;
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
     }
 
-    display() {
+    display(ctx) {
         ctx.beginPath();
         ctx.arc(this.position.x, this.position.y, this.r, 0, Math.PI * 2);
         ctx.fillStyle = 'rgb(200, 200, 200)';

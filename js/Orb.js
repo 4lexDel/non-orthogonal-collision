@@ -38,6 +38,9 @@ class Orb {
     }
 
     checkGroundCollision(groundSegment) {
+        let x1 = Math.min(groundSegment.x1, groundSegment.x2);
+        let x2 = Math.max(groundSegment.x1, groundSegment.x2);
+
         let deltaX = this.position.x - groundSegment.x;
         let deltaY = this.position.y - groundSegment.y;
         let cosine = Math.cos(groundSegment.rot);
@@ -48,8 +51,8 @@ class Orb {
         let velocityXTemp = cosine * this.velocity.x + sine * this.velocity.y;
         let velocityYTemp = cosine * this.velocity.y - sine * this.velocity.x;
 
-        if (groundYTemp > -this.r && this.position.x > groundSegment.x1 && this.position.x < groundSegment.x2) {
-            groundYTemp = -this.r;
+        if (((groundYTemp < 0 && Math.abs(groundYTemp) < this.r) || (groundYTemp > 0 && Math.abs(groundYTemp) < this.r)) && this.position.x > x1 && this.position.x < x2) {
+            groundYTemp = groundYTemp < 0 ? -this.r : this.r;
             velocityYTemp *= -1.0;
             velocityYTemp *= this.damping;
         }

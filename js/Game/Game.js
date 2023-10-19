@@ -44,16 +44,16 @@ class Game extends GameBase { //A renommer ?
 
         this.orbs = [];
 
-        this.initOrb(100);
+        this.initOrb(10);
 
-        // this.generateObstacle();
+        this.generateObstacle();
 
         this.generateGround();
     }
 
     initOrb(nb = 50) {
         for (let i = 0; i < nb; i++) {
-            this.orbs.push(new Orb((50 + Math.random() * this.canvas.width - 100), Math.random() * 80, 8, Math.random() * 5, Math.random() * 5));
+            this.orbs.push(new Orb((50 + Math.random() * this.canvas.width - 100), Math.random() * 80, 12, Math.random() * 5, Math.random() * 5));
         }
     }
 
@@ -74,7 +74,7 @@ class Game extends GameBase { //A renommer ?
         this.obstacle.push(new Segment(800, 400, 750, 450));
         this.obstacle.push(new Segment(750, 450, 600, 500));
         this.obstacle.push(new Segment(600, 500, 550, 450));
-        this.obstacle.push(new Segment(350, 450, 500, 300));
+        this.obstacle.push(new Segment(550, 450, 500, 300));
     }
 
     /*initEvent() {
